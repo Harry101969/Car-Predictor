@@ -15,7 +15,6 @@ def load_model():
 # Load data and model
 data = load_data()
 model = load_model()
-
 # Streamlit app interface
 st.title("Welcome to Car Price Predictor")
 st.markdown("This app predicts the price of a car you want to sell. Try filling the details below:")
