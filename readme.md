@@ -2,7 +2,7 @@
 
 A machine learning web application that predicts used car prices based on various features such as manufacturer, model, year, kilometers driven, and fuel type. Built with Python, Scikit-learn, and Streamlit.
 
-![Car Price Predictor](<![image](https://github.com/user-attachments/assets/2423c354-94e9-4086-812b-0c0cbcf7e7f1)>)
+![Car Price Predictor](![alt text](image.png))
 
 ## 📋 Table of Contents
 
