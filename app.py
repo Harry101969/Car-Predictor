@@ -202,47 +202,54 @@ with tab2:
     st.write(f"Number of manufacturers: {data['company'].nunique()}")
     st.write(f"Number of models: {data['name'].nunique()}")
     
-    # Popular manufacturers
-    st.subheader("Popular Manufacturers")
-    company_counts = data['company'].value_counts().head(10)
-    fig, ax = plt.subplots(figsize=(7, 6))
-    company_counts.plot(kind='bar', ax=ax)
-    plt.title('Top 10 Car Manufacturers by Count')
-    plt.xlabel('Manufacturer')
-    plt.ylabel('Number of Cars')
-    plt.tight_layout()
-    st.pyplot(fig)
+    # Create two columns for charts to make them smaller
+    col1, col2 = st.columns(2)
     
-    # Price distribution
-    st.subheader("Price Distribution")
-    fig, ax = plt.subplots(figsize=(7, 6))
-    sns.histplot(data=data, x='Price', bins=30, kde=True, ax=ax)
-    plt.title('Distribution of Car Prices')
-    plt.xlabel('Price (₹)')
-    plt.ylabel('Frequency')
-    plt.tight_layout()
-    st.pyplot(fig)
+    with col1:
+        # Popular manufacturers
+        st.subheader("Popular Manufacturers")
+        company_counts = data['company'].value_counts().head(10)
+        fig, ax = plt.subplots(figsize=(5, 3))
+        company_counts.plot(kind='bar', ax=ax)
+        plt.title('Top 10 Car Manufacturers by Count')
+        plt.xlabel('Manufacturer')
+        plt.ylabel('Number of Cars')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        st.pyplot(fig)
+        
+        # Price by Year
+        st.subheader("Price by Year")
+        yearly_avg = data.groupby('year')['Price'].mean().reset_index()
+        fig, ax = plt.subplots(figsize=(5, 3))
+        sns.lineplot(data=yearly_avg, x='year', y='Price', marker='o', ax=ax)
+        plt.title('Average Car Price by Year')
+        plt.xlabel('Year')
+        plt.ylabel('Average Price (₹)')
+        plt.tight_layout()
+        st.pyplot(fig)
     
-    # Price by Year
-    st.subheader("Price by Year")
-    yearly_avg = data.groupby('year')['Price'].mean().reset_index()
-    fig, ax = plt.subplots(figsize=(7, 6))
-    sns.lineplot(data=yearly_avg, x='year', y='Price', marker='o', ax=ax)
-    plt.title('Average Car Price by Year')
-    plt.xlabel('Year')
-    plt.ylabel('Average Price (₹)')
-    plt.tight_layout()
-    st.pyplot(fig)
-    
-    # Price by Fuel Type
-    st.subheader("Price by Fuel Type")
-    fig, ax = plt.subplots(figsize=(7, 6))
-    sns.boxplot(data=data, x='fuel_type', y='Price', ax=ax)
-    plt.title('Car Price Distribution by Fuel Type')
-    plt.xlabel('Fuel Type')
-    plt.ylabel('Price (₹)')
-    plt.tight_layout()
-    st.pyplot(fig)
+    with col2:
+        # Price distribution
+        st.subheader("Price Distribution")
+        fig, ax = plt.subplots(figsize=(5, 3))
+        sns.histplot(data=data, x='Price', bins=30, kde=True, ax=ax)
+        plt.title('Distribution of Car Prices')
+        plt.xlabel('Price (₹)')
+        plt.ylabel('Frequency')
+        plt.tight_layout()
+        st.pyplot(fig)
+        
+        # Price by Fuel Type
+        st.subheader("Price by Fuel Type")
+        fig, ax = plt.subplots(figsize=(5, 3))
+        sns.boxplot(data=data, x='fuel_type', y='Price', ax=ax)
+        plt.title('Car Price Distribution by Fuel Type')
+        plt.xlabel('Fuel Type')
+        plt.ylabel('Price (₹)')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        st.pyplot(fig)
 
 # Add a footer
 st.markdown("---")
