@@ -78,7 +78,7 @@ def load_data():
 
 @st.cache_resource
 def load_model():
-    with open('LinearRegressionModel_Final.pkl', 'rb') as file:
+    with open('LinearRegression_Final.pkl', 'rb') as file:
         return pickle.load(file)
 
 # Calculate car age
