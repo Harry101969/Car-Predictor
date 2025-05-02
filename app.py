@@ -168,11 +168,9 @@ with tab1:
                 
                 # Display the prediction
                 st.success(f"The predicted price of the car is: {formatted_price}")
-                
                 # Show confidence interval (approximate)
                 lower_bound = predicted_price * 0.85
                 upper_bound = predicted_price * 1.15
-                
                 st.write("#### Price Range")
                 st.write(f"The price is likely to be between ₹{lower_bound:,.2f} and ₹{upper_bound:,.2f}")
                 
