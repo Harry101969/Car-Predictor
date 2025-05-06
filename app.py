@@ -173,7 +173,6 @@ with tab1:
                 upper_bound = predicted_price * 1.15
                 st.write("#### Price Range")
                 st.write(f"The price is likely to be between ₹{lower_bound:,.2f} and ₹{upper_bound:,.2f}")
-                
                 # Compare with similar cars
                 st.write("#### Similar Cars in Market")
                 similar_cars = data[
